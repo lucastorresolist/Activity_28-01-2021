@@ -1,45 +1,62 @@
 import sys
 sys.path.append('.')
+from pytest import raises
+from src.models.base_model import BaseModel
 from src.models.category import Category
 
 
+def test_instance():
+    obj = Category('Televisores', "Equipamentos maravilhos para sua casa.")
+
+    assert isinstance(obj, BaseModel)
+    assert isinstance(obj, Category)
+
+
+def test_name_valid():
+    name_ = 'Televisores'
+    description_ = 'Equipamentos maravilhos para sua casa.'
+    obj = Category(name_, description_)
+
+    assert isinstance(obj.name, str)
+    assert obj.name == name_
+
+
 def test_validate_name_isNone():
-    try:
+    with raises(TypeError):
         Category(None, "Equipamentos maravilhos para sua casa.")
-    except Exception as e:
-        assert isinstance(e, TypeError)
 
 
 def test_validate_name_type():
-    try:
+    with raises(TypeError):
         Category(2, "Equipamentos maravilhos para sua casa.")
-    except Exception as e:
-        assert isinstance(e, TypeError)
 
 
 def test_validate_name_empty():
-    try:
+    with raises(ValueError):
         Category(' ', 'Equipamentos maravilhos para sua casa.')
-    except Exception as e:
-        assert isinstance(e, ValueError)
 
 
 def test_validate_name_length():
-    try:
-        Category("Eletrodomésticos"*30, "Equipamentos maravilhos para sua casa.")
-    except Exception as e:
-        assert isinstance(e, ValueError)
+    with raises(ValueError):
+        Category("Eletrodomésticos"*30,
+                 "Equipamentos maravilhos para sua casa.")
+
+
+def test_description_valid():
+    name_ = 'Televisores'
+    description_ = 'Equipamentos maravilhos para sua casa.'
+    obj = Category(name_, description_)
+
+    assert isinstance(obj.description, str)
+    assert obj.description == description_
 
 
 def test_validate_description_type():
-    try:
+    with raises(TypeError):
         Category("Eletrodomésticos", 30)
-    except Exception as e:
-        assert isinstance(e, TypeError)
 
 
 def test_validate_description_length():
-    try:
-        Category("Eletrodomésticos", "Equipamentos maravilhos para sua casa."*300)
-    except Exception as e:
-        assert isinstance(e, ValueError)
+    with raises(ValueError):
+        Category("Eletrodomésticos",
+                 "Equipamentos maravilhos para sua casa."*300)
