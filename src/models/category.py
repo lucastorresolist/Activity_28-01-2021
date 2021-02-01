@@ -2,6 +2,7 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import validates
 from src.models.base_model import BaseModel
 
+
 class Category(BaseModel):
     __tablename__ = 'category'
     name = Column('name', String(length=100), nullable=False)
