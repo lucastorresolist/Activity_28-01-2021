@@ -20,4 +20,3 @@ class Session:
     def __exit__(self, type, value, traceback):
         self.__session.close()
         self.__engine.dispose()
-        
