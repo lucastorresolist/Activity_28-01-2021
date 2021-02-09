@@ -1,0 +1,30 @@
+{% extends 'template.html' %}
+{% block content %}
+    <h1 style="text-align: center;">New category</h1>
+    <form action="/category/created" method="get">
+        <div class="row" style="margin: 5%;">
+          <div class="col-sm mb-4">
+            <label for="name" class="form-label">Name</label>
+            <input
+              type="text"
+              class="form-control mb-2"
+              name="name"
+              id="name"
+              aria-label="Name"
+              value="{{category.name}}"
+            />
+            <label for="name" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              rows="4"
+              name="description"
+              id="description"
+            >{{ category.description}} </textarea>
+          </div>
+        </div>
+        <div class="col-sm" style="width: 300px; margin-left: 6%;">
+          <input id="submit" type="submit" class="btn btn-primary" value="Submit" />
+          <a class="btn btn-primary" href="/category">Back</a>
+        </div>
+      </form>
+{% endblock %}

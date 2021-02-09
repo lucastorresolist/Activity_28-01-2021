@@ -1,0 +1,35 @@
+{% extends 'template.html' %}
+{% block content %}
+    <div class="ro">
+        <div class="col">
+            <h1 style="text-align: center;">Categories</h1>
+            <a class="btn btn-primary" href="/category/create" style="margin-left: 1%;">Create category</a>
+        </div>
+        <div style="text-align: center; margin: 0 6% 6% 6%;">
+            <table style="width:100%">
+                <tr>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th></th>
+                </tr>
+                {% for category in categories%}
+                <tr>
+                    <td>{{category.name}}</td>
+                    <td>{{category.description}}</td>
+                    <td>
+                      <a href="/category/update?id={{ category.id_ }}">
+                        <i class="fas fa-pen"></i>
+                      </a>
+                      
+                    </td>
+                    <td>
+                      <a href="/category/delete?id={{ category.id_ }}">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </td>
+                </tr>
+                {% endfor %}
+              </table>
+        </div>
+    </div>
+{% endblock %}
